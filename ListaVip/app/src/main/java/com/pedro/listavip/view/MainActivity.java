@@ -1,8 +1,10 @@
-package com.pedro.listavip;
+package com.pedro.listavip.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.pedro.listavip.R;
 
 public class MainActivity extends AppCompatActivity {
 
