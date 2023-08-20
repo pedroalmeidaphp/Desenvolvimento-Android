@@ -4,15 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.pedro.listavip.R;
 import com.pedro.listavip.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
     Pessoa pessoa;
-    String dados;
 
     EditText edit_primeiro;
     EditText edit_sobrenome;
@@ -26,12 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pessoa= new Pessoa();
-        pessoa.setFirstName("Pedro");
-        pessoa.setLastName("Almeida");
-        pessoa.setCourse("CC");
-        pessoa.setContact("16 993697830");
-        dados = pessoa.getFirstName();
+
 
         edit_primeiro = findViewById(R.id.edit_primeiro);
         edit_sobrenome = findViewById(R.id.edit_sobrenome);
@@ -42,13 +38,32 @@ public class MainActivity extends AppCompatActivity {
         btn_salvar = findViewById(R.id.btn_salvar);
         btn_finalizar = findViewById(R.id.btn_finalizar);
 
-        edit_primeiro.setText(pessoa.getFirstName());
-        edit_sobrenome.setText(pessoa.getLastName());
-        edit_curso.setText(pessoa.getCourse());
-        edit_celular.setText(pessoa.getContact());
 
-        
+        btn_limpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edit_primeiro.setText("");
+                edit_sobrenome.setText("");
+                edit_curso.setText("");
+                edit_celular.setText("");
+            }
+        });
+        btn_finalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Obrigado!",Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
 
-        Log.i("poo", pessoa.toString());
+        btn_salvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pessoa.setFirstName(edit_primeiro.getText().toString());
+                pessoa.setLastName(edit_sobrenome.getText().toString());
+                pessoa.setCourse(edit_curso.getText().toString());
+                pessoa.setContact(edit_celular.getText().toString());
+            }
+        });
     }
 }
