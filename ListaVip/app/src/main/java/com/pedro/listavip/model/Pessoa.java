@@ -1,16 +1,13 @@
 package com.pedro.listavip.model;
 
 public class Pessoa {
-    //ATRIBUTES
     private String firstName;
     private String lastName;
     private String course;
     private String contact;
 
-
     //constructor
-    public Pessoa(){
-
+    public Pessoa() {
     }
 
     public String getFirstName() {
