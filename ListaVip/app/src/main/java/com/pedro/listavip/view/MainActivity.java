@@ -11,9 +11,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.pedro.listavip.R;
+import com.pedro.listavip.controller.PessoaController;
 import com.pedro.listavip.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    PessoaController controller;
+    Pessoa pessoa;
+
 
     SharedPreferences preferences;
 
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        controller= new PessoaController();
 
 
         edit_primeiro = findViewById(R.id.edit_primeiro);
@@ -66,5 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setContact(edit_celular.getText().toString());
             }
         });
+        controller.salvar(pessoa);
+
     }
 }
