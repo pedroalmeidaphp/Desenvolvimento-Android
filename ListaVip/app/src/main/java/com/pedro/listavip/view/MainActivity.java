@@ -2,6 +2,7 @@ package com.pedro.listavip.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,9 @@ import com.pedro.listavip.R;
 import com.pedro.listavip.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences preferences;
+
     Pessoa pessoa;
     EditText edit_primeiro;
     EditText edit_sobrenome;
@@ -26,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         edit_primeiro = findViewById(R.id.edit_primeiro);
         edit_sobrenome = findViewById(R.id.edit_sobrenome);
         edit_curso = findViewById(R.id.edit_curso);
