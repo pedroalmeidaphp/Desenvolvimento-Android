@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 edit_celular.setText("");
             }
         });
+
+        pessoa= new Pessoa();
         btn_finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,11 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        listaVip.putString("primeiroNome", pessoa.getFirstName());
-        listaVip.putString("sobrenome", pessoa.getLastName());
-        listaVip.putString("curso", pessoa.getCourse());
-        listaVip.putString("contato", pessoa.getContact());
-        listaVip.apply();
+
+
         btn_salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setLastName(edit_sobrenome.getText().toString());
                 pessoa.setCourse(edit_curso.getText().toString());
                 pessoa.setContact(edit_celular.getText().toString());
+
+                listaVip.putString("primeiroNome", pessoa.getFirstName());
+                listaVip.putString("sobrenome", pessoa.getLastName());
+                listaVip.putString("curso", pessoa.getCourse());
+                listaVip.putString("contato", pessoa.getContact());
+                listaVip.apply();
+
             }
         });
         controller.salvar(pessoa);
