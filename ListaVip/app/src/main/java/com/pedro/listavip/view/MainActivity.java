@@ -11,15 +11,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.pedro.listavip.R;
+import com.pedro.listavip.controller.CursoController;
 import com.pedro.listavip.controller.PessoaController;
+import com.pedro.listavip.model.Curso;
 import com.pedro.listavip.model.Pessoa;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 
     PessoaController controller;
     Pessoa pessoa;
+    List<Curso> listaDeCursos;
 
+    CursoController cursoController;
 
 
 
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         controller= new PessoaController(MainActivity.this);
         controller.buscar(pessoa);
+
+        cursoController = new CursoController();
+        listaDeCursos= cursoController.getListaCursos();
 
 
         edit_primeiro = findViewById(R.id.edit_primeiro);
