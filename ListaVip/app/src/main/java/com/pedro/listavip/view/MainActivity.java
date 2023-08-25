@@ -2,18 +2,17 @@ package com.pedro.listavip.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.pedro.listavip.R;
 import com.pedro.listavip.controller.CursoController;
 import com.pedro.listavip.controller.PessoaController;
-import com.pedro.listavip.model.Curso;
 import com.pedro.listavip.model.Pessoa;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     PessoaController controller;
     Pessoa pessoa;
-    List<Curso> listaDeCursos;
+    List<String> nomesCursos;
 
     CursoController cursoController;
 
@@ -37,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     Button btn_salvar;
     Button btn_finalizar;
 
+    Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,17 +47,23 @@ public class MainActivity extends AppCompatActivity {
         controller.buscar(pessoa);
 
         cursoController = new CursoController();
-        listaDeCursos= cursoController.getListaCursos();
+        nomesCursos = cursoController.dadosParaSpinner();
 
 
         edit_primeiro = findViewById(R.id.edit_primeiro);
         edit_sobrenome = findViewById(R.id.edit_sobrenome);
         edit_curso = findViewById(R.id.edit_curso);
         edit_celular = findViewById(R.id.edit_celular);
+        spinner = findViewById(R.id.spinner);
 
         btn_limpar = findViewById(R.id.btn_limpar);
         btn_salvar = findViewById(R.id.btn_salvar);
         btn_finalizar = findViewById(R.id.btn_finalizar);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cursoController.dadosParaSpinner());
+
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        spinner.setAdapter(adapter);
         btn_limpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
